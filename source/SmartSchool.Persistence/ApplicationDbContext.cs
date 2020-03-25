@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using SmartSchool.Core.Entities;
+using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 
 namespace SmartSchool.Persistence
 {
@@ -10,6 +12,7 @@ namespace SmartSchool.Persistence
     {
         public DbSet<Sensor> Sensors { get; set; }
         public DbSet<Measurement> Measurements { get; set; }
+       
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -21,6 +24,16 @@ namespace SmartSchool.Persistence
             string connectionString = configuration["ConnectionStrings:DefaultConnection"];
             optionsBuilder.UseSqlServer(connectionString);
 
+        }
+
+        internal int SaveChanges()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }
